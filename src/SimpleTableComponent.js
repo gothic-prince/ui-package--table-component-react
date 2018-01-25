@@ -22,7 +22,7 @@ class SimpleTableComponent extends TableAbstract {
     }
     return this.getData().length === 0 || loaded === false
   }
-  getCheckbox(entity){
+  getCheckbox(entity, index){
     const idSelected = this.getTable().getDataSelectorManager().isChosen(entity)
     if (entity === null) {
       const entities = (
@@ -40,6 +40,7 @@ class SimpleTableComponent extends TableAbstract {
     }
     return (
       <input
+        key={index}
         className="checkbox"
         onChange={(e) => this.handleSelectEntity(entity)}
         type="checkbox"

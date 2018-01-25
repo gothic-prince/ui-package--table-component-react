@@ -53,7 +53,7 @@ class TableAbstract extends React.Component {
     this.getTable().getDensityManager().setDensity(density)
     this.getTable().getPaginationManager().setLimitRows(maxItems)
   }
-  getCheckbox(entity){
+  getCheckbox(entity, index){
     throw new Error('Method "getCheckbox" should be defined')
   }
   getNoItems () {
@@ -260,7 +260,7 @@ class TableAbstract extends React.Component {
             <tbody className='table-component__body'>
             {(this.isLoading() ?
               this.getNoItems() :
-              entities.map((entity, index) => this.row(entity, this.getCheckbox(entity), index))
+              entities.map((entity, index) => this.row(entity, this.getCheckbox(entity, index), index))
             )}
             </tbody>
           </table>

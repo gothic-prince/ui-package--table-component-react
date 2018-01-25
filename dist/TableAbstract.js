@@ -111,7 +111,7 @@ var TableAbstract = function (_React$Component) {
     }
   }, {
     key: 'getCheckbox',
-    value: function getCheckbox(entity) {
+    value: function getCheckbox(entity, index) {
       throw new Error('Method "getCheckbox" should be defined');
     }
   }, {
@@ -391,7 +391,7 @@ var TableAbstract = function (_React$Component) {
               'tbody',
               { className: 'table-component__body' },
               this.isLoading() ? this.getNoItems() : entities.map(function (entity, index) {
-                return _this5.row(entity, _this5.getCheckbox(entity), index);
+                return _this5.row(entity, _this5.getCheckbox(entity, index), index);
               })
             )
           )

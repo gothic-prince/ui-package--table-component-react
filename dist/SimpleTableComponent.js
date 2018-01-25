@@ -70,7 +70,7 @@ var SimpleTableComponent = function (_TableAbstract) {
     }
   }, {
     key: 'getCheckbox',
-    value: function getCheckbox(entity) {
+    value: function getCheckbox(entity, index) {
       var _this2 = this;
 
       var idSelected = this.getTable().getDataSelectorManager().isChosen(entity);
@@ -85,6 +85,7 @@ var SimpleTableComponent = function (_TableAbstract) {
           value: idSelected });
       }
       return _react2.default.createElement('input', {
+        key: index,
         className: 'checkbox',
         onChange: function onChange(e) {
           return _this2.handleSelectEntity(entity);
