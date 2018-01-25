@@ -184,15 +184,15 @@ var SimpleTableComponent = function (_TableAbstract) {
           _props2$onChangeMaxIt = _props2.onChangeMaxItems,
           _onChangeMaxItems = _props2$onChangeMaxIt === undefined ? function () {} : _props2$onChangeMaxIt,
           _props2$onChangeCurre = _props2.onChangeCurrentPage,
-          onChangeCurrentPage = _props2$onChangeCurre === undefined ? function () {} : _props2$onChangeCurre;
+          _onChangeCurrentPage = _props2$onChangeCurre === undefined ? function () {} : _props2$onChangeCurre;
 
       var entities = this.getData();
       var pagination = this.getTable().getPaginationManager();
       return _react2.default.createElement(_TablePagination2.default, {
-        onInputPage: function onInputPage(value) {
+        onChangeCurrentPage: function onChangeCurrentPage(value) {
           var page = Number.isNaN(Number(value)) ? 1 : Number(value);
           pagination.setCurrentPage(page);
-          onChangeCurrentPage(page);
+          _onChangeCurrentPage(page);
         },
         onChangeMaxItems: function onChangeMaxItems(value) {
           pagination.setLimitRows(value);

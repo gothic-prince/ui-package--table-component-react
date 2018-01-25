@@ -113,7 +113,7 @@ class SimpleTableComponent extends TableAbstract {
     const pagination = this.getTable().getPaginationManager()
     return (
       <TablePagination
-        onInputPage={(value) => {
+        onChangeCurrentPage={(value) => {
           const page = Number.isNaN(Number(value)) ? 1 : Number(value)
           pagination.setCurrentPage(page)
           onChangeCurrentPage(page)
