@@ -1,0 +1,45 @@
+.table-size-component {
+  .table-size-component__switcher {
+    &.table-size-component__switcher_littlest {
+      &.table-size-component__switcher_active {}
+    }
+    &.table-size-component__switcher_middle {
+      &.table-size-component__switcher_active {}
+    }
+    &.table-size-component__switcher_biggest {
+      &.table-size-component__switcher_active {}
+    }
+  }
+}
+
+.table-size-component {
+  display: inline-block;
+  .table-size-component__switcher {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    cursor: pointer;
+    border: 0;
+    display: inline-block;
+    outline: none;
+    background: none;
+    &.table-size-component__switcher_littlest {
+      background-image: url('../Icons/density-x3.png');
+      &.table-size-component__switcher_active {
+        background-image: url('../Icons/density-x3-active.png');
+      }
+    }
+    &.table-size-component__switcher_middle {
+      background-image: url('../Icons/density-x2.png');
+      &.table-size-component__switcher_active {
+        background-image: url('../Icons/density-x2-active.png');
+      }
+    }
+    &.table-size-component__switcher_biggest {
+      background-image: url('../Icons/density-x1.png');
+      &.table-size-component__switcher_active {
+        background-image: url('../Icons/density-x1-active.png');
+      }
+    }
+  }
+}

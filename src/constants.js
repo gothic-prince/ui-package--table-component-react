@@ -1,0 +1,1 @@
+export const TABLE_LIMIT_ROWS_BY_DEFAULT = 25

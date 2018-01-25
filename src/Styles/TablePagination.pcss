@@ -1,0 +1,61 @@
+.table-pagination {
+  width: 100%;
+  font-size: 14px;
+  text-align: right;
+  color: #9097a9;
+  margin-bottom: 15px;
+  font-family: 'PT Sans', sans-serif;
+
+  .table-pagination__prev,
+  .table-pagination__next,
+  .table-pagination__first,
+  .table-pagination__last{
+    width: 48px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-position: 14px 12px;
+  }
+  .table-pagination__first {
+    background-image: url('../Icons/back-first.png');
+  }
+  .table-pagination__prev {
+    background-image: url('../Icons/back.png');
+  }
+  .table-pagination__next {
+    background-image: url('../Icons/next.png');
+  }
+  .table-pagination__last {
+    background-image: url('../Icons/last.png');
+  }
+  .table-pagination__setPage {
+    input {
+      box-shadow: 3.3px 3.8px 12px 0 rgba(0, 0, 0, 0.1);
+      text-align: center;
+      border: 0;
+      font-size: 18px;
+      color: #00c566;
+    }
+    width: 40px;
+    text-align: center;
+    display: inline-table;
+  }
+  .table-pagination__quantity {
+    display: inline-block;
+    margin-right: 15px;
+  }
+  .table-pagination__switchPage{
+    display: inline-block;
+    margin-right: 32px;
+    vertical-align: middle;
+  }
+  .table-pagination__button{
+    margin-right: 8px;
+    vertical-align: middle;
+    &:last-child{
+      margin-right: 0px;
+    }
+  }
+  .table-pagination__nav {
+    display: inline-block;
+  }
+}

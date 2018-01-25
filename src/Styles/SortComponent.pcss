@@ -1,0 +1,31 @@
+.sort-component {
+  .sort-component__angle {
+    &.sort-component_active {
+      &.sort-component_no-reversed {}
+      &.sort-component_reversed {}
+    }
+    &.sort-component_no-active {}
+  }
+}
+
+.sort-component {
+  .sort-component__angle {
+    display: inline-block;
+    margin-left: 10px;
+    width: 8px;
+    height: 16px;
+    vertical-align: sub;
+    background: url('../Icons/Sort/default.png');
+    &.sort-component_active {
+      &.sort-component_no-reversed {
+        background: url('../Icons/Sort/top-active.png');
+      }
+      &.sort-component_reversed {
+        background: url('../Icons/Sort/bot-active.png');
+      }
+    }
+    &.sort-component_no-active {
+
+    }
+  }
+}

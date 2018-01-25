@@ -1,0 +1,91 @@
+.table-component {
+  &.table-component__theme_default {
+    background-color: #eaeef0;
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 3.3px 3.8px 12px 0 rgba(0, 0, 0, 0.1);
+    .table-component__head {
+      .table-component__header-field {
+        text-align: left;
+        line-height: 1.5;
+        font-family: 'PT Sans', sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 10px 10px;
+        padding-left: 32px;
+        color: #9097a9;
+        &.table-component__column-checkbox {
+          width: 40px;
+          padding-right: 0px;
+        }
+        .table-component__field-name {
+          font-weight: bold;
+          &.table-component__field-name_sortable {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .table-component__body {
+      .table-component__body-row {
+        font-family: 'PT Sans', sans-serif;
+        font-size: 14px;
+        text-align: left;
+        color: #9097a9;
+        background-color: #fefefe;
+        border-bottom: 1pt solid #cfd8dc;
+        &:last-of-type {
+          border-bottom: 0;
+        }
+        .table-component__body-field {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          max-width: 300px;
+          padding-left: 32px;
+          text-align: left;
+          line-height: 1.5;
+          a {
+            color: #00c566;
+            text-decoration: none;
+            font-weight: bold;
+          }
+          &.table-component__column-checkbox {
+            width: 40px;
+            padding-right: 0px;
+          }
+        }
+      }
+    }
+  }
+  &.table-component__size_3x {
+    &.table-component__theme_default {
+      .table-component__body-field{
+        padding: 18px 10px;
+      }
+    }
+  }
+  &.table-component__size_2x {
+    &.table-component__theme_default {
+      .table-component__body-field{
+        padding: 9px 10px;
+      }
+    }
+  }
+  &.table-component__size_1x {
+    &.table-component__theme_default {
+      .table-component__body-field{
+        padding: 9px 10px;
+      }
+    }
+    &.table-component__theme_default {
+      .table-component__body-field{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding: 0px 10px;
+        overflow: hidden;
+        max-width: 300px;
+      }
+    }
+  }
+}
