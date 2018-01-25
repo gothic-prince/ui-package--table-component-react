@@ -29,10 +29,14 @@ class TableAbstract extends React.Component {
        * @return {ColumnBodyEntityInterface[]}
        */
       createBodyColumns = null,
+      comparison = null
     } = this.props
     if (createHeadColumns !== null && createBodyColumns !== null) {
       const columnManager = new ColumnManager(createBodyColumns, createHeadColumns())
       this._builder = new TableBuilder(() => this.forceUpdate(), columnManager)
+    }
+    if (comparison !== null) {
+      this.getTable().getDataSelectorManager().comparison = comparison
     }
     return this._builder
   }
@@ -294,6 +298,7 @@ TableAbstract.propTypes = {
   onDoubleClick: PropTypes.func,
   onClick: PropTypes.func,
   onContextMenu: PropTypes.func,
+  comparison: PropTypes.func,
   className: PropTypes.string
 }
 export default TableAbstract

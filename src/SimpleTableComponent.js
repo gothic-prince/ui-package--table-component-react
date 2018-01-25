@@ -150,6 +150,7 @@ SimpleTableComponent.propTypes = {
   quantity: PropTypes.number,
   onReset: PropTypes.func,
   onChangeCurrentPage: PropTypes.func,
-  needDensity: PropTypes.func,
+  comparison: PropTypes.func,
+  needDensity: PropTypes.bool,
 }
 export default SimpleTableComponent

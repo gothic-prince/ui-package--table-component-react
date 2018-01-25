@@ -76,13 +76,18 @@ var TableAbstract = function (_React$Component) {
           _props$createHeadColu = _props.createHeadColumns,
           createHeadColumns = _props$createHeadColu === undefined ? null : _props$createHeadColu,
           _props$createBodyColu = _props.createBodyColumns,
-          createBodyColumns = _props$createBodyColu === undefined ? null : _props$createBodyColu;
+          createBodyColumns = _props$createBodyColu === undefined ? null : _props$createBodyColu,
+          _props$comparison = _props.comparison,
+          comparison = _props$comparison === undefined ? null : _props$comparison;
 
       if (createHeadColumns !== null && createBodyColumns !== null) {
         var columnManager = new _ColumnManager2.default(createBodyColumns, createHeadColumns());
         this._builder = new _TableBuilder2.default(function () {
           return _this2.forceUpdate();
         }, columnManager);
+      }
+      if (comparison !== null) {
+        this.getTable().getDataSelectorManager().comparison = comparison;
       }
       return this._builder;
     }
@@ -428,6 +433,7 @@ TableAbstract.propTypes = {
   onDoubleClick: _propTypes2.default.func,
   onClick: _propTypes2.default.func,
   onContextMenu: _propTypes2.default.func,
+  comparison: _propTypes2.default.func,
   className: _propTypes2.default.string
 };
 exports.default = TableAbstract;
