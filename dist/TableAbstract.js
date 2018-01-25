@@ -197,7 +197,7 @@ var TableAbstract = function (_React$Component) {
               onClick: function onClick(e) {
                 return _onClick(e, entity);
               },
-              key: index },
+              key: index + 1 },
             column.getHtmlValue()
           ));
         }

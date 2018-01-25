@@ -112,7 +112,7 @@ class TableAbstract extends React.Component {
             onDoubleClick={(e) => onDoubleClick(e, entity)}
             onContextMenu={(e) => onContextMenu(e, entity)}
             onClick={(e) => onClick(e, entity)}
-            key={index}>{column.getHtmlValue()}</td>
+            key={index+1}>{column.getHtmlValue()}</td>
         )
       }
     })
