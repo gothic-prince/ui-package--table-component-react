@@ -9,12 +9,12 @@ class TableResetComponent extends React.Component {
     } = this.props
     return (
       <span className='table-reset-component'>
-        <button className={
-            getClassNames([
-              'table-reset-component__button',
-              (loaded === false ? 'table-reset-component_loading' : null)
-            ])
-          }
+        <button className={(
+          classnames([
+            'table-reset-component__button',
+            (loaded === false ? 'table-reset-component_loading' : null)
+          ])
+        )}
           onClick={() => onReset()} />
       </span>
     )

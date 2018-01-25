@@ -47,7 +47,7 @@ var TableResetComponent = function (_React$Component) {
       return _react2.default.createElement(
         'span',
         { className: 'table-reset-component' },
-        _react2.default.createElement('button', { className: getClassNames(['table-reset-component__button', loaded === false ? 'table-reset-component_loading' : null]),
+        _react2.default.createElement('button', { className: (0, _classnames2.default)(['table-reset-component__button', loaded === false ? 'table-reset-component_loading' : null]),
           onClick: function onClick() {
             return onReset();
           } })
