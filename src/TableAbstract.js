@@ -199,8 +199,6 @@ class TableAbstract extends React.Component {
       onChoose = null,
       onSelectEntity = onChoose
     } = this.props
-    const entities = this.getData()
-    const selectManager = this.getTable().getDataSelectorManager()
     const columnManager = this.getTable().getColumnManager()
     return (
       <thead className='table-component__head'>
@@ -262,7 +260,7 @@ class TableAbstract extends React.Component {
             <tbody className='table-component__body'>
             {(this.isLoading() ?
               this.getNoItems() :
-              entities.map((entity, index) => this.row(entity, this.getCheckbox(entity), index))
+              entities.map((entity, index) => this.row(entity, this.getCheckbox(entity), index+1))
             )}
             </tbody>
           </table>

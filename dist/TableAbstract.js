@@ -311,8 +311,6 @@ var TableAbstract = function (_React$Component) {
           _props6$onSelectEntit = _props6.onSelectEntity,
           onSelectEntity = _props6$onSelectEntit === undefined ? onChoose : _props6$onSelectEntit;
 
-      var entities = this.getData();
-      var selectManager = this.getTable().getDataSelectorManager();
       var columnManager = this.getTable().getColumnManager();
       return _react2.default.createElement(
         'thead',
@@ -393,7 +391,7 @@ var TableAbstract = function (_React$Component) {
               'tbody',
               { className: 'table-component__body' },
               this.isLoading() ? this.getNoItems() : entities.map(function (entity, index) {
-                return _this5.row(entity, _this5.getCheckbox(entity), index);
+                return _this5.row(entity, _this5.getCheckbox(entity), index + 1);
               })
             )
           )
