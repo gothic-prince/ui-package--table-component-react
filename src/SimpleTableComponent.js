@@ -107,7 +107,7 @@ class SimpleTableComponent extends TableAbstract {
   getBottom () {
     const {
       onChangeMaxItems = () => {},
-      onInputPage = () => {}
+      onChangeCurrentPage = () => {},
     } = this.props
     const entities = this.getData()
     const pagination = this.getTable().getPaginationManager()
@@ -116,7 +116,7 @@ class SimpleTableComponent extends TableAbstract {
         onInputPage={(value) => {
           const page = Number.isNaN(Number(value)) ? 1 : Number(value)
           pagination.setCurrentPage(page)
-          onInputPage(page)
+          onChangeCurrentPage(page)
         }}
         onChangeMaxItems={(value) => {
           pagination.setLimitRows(value)
@@ -152,7 +152,7 @@ SimpleTableComponent.propTypes = {
   loaded: PropTypes.bool,
   quantity: PropTypes.number,
   onReset: PropTypes.func,
-  onInputPage: PropTypes.func,
+  onChangeCurrentPage: PropTypes.func,
   needDensity: PropTypes.func,
 }
 export default SimpleTableComponent

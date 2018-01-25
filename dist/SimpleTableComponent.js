@@ -183,8 +183,8 @@ var SimpleTableComponent = function (_TableAbstract) {
       var _props2 = this.props,
           _props2$onChangeMaxIt = _props2.onChangeMaxItems,
           _onChangeMaxItems = _props2$onChangeMaxIt === undefined ? function () {} : _props2$onChangeMaxIt,
-          _props2$onInputPage = _props2.onInputPage,
-          _onInputPage = _props2$onInputPage === undefined ? function () {} : _props2$onInputPage;
+          _props2$onChangeCurre = _props2.onChangeCurrentPage,
+          onChangeCurrentPage = _props2$onChangeCurre === undefined ? function () {} : _props2$onChangeCurre;
 
       var entities = this.getData();
       var pagination = this.getTable().getPaginationManager();
@@ -192,7 +192,7 @@ var SimpleTableComponent = function (_TableAbstract) {
         onInputPage: function onInputPage(value) {
           var page = Number.isNaN(Number(value)) ? 1 : Number(value);
           pagination.setCurrentPage(page);
-          _onInputPage(page);
+          onChangeCurrentPage(page);
         },
         onChangeMaxItems: function onChangeMaxItems(value) {
           pagination.setLimitRows(value);
@@ -239,7 +239,7 @@ SimpleTableComponent.propTypes = {
   loaded: _propTypes2.default.bool,
   quantity: _propTypes2.default.number,
   onReset: _propTypes2.default.func,
-  onInputPage: _propTypes2.default.func,
+  onChangeCurrentPage: _propTypes2.default.func,
   needDensity: _propTypes2.default.func
 };
 exports.default = SimpleTableComponent;
