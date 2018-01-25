@@ -107,7 +107,7 @@ var TablePagination = function (_React$Component) {
             onChange: function onChange(e) {
               return onChangeCurrentPage(Number(e.target.value));
             },
-            children: page,
+            value: page,
             className: (0, _classnames2.default)(['table-pagination__button', 'table-pagination__set-page', 'inline-block'])
           }),
           _react2.default.createElement('button', {

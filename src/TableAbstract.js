@@ -117,7 +117,7 @@ class TableAbstract extends React.Component {
       }
     })
     return (
-      <tr className='table-component__body-row' key={key}>
+      <tr className='table-component__body-row' key={key+1}>
         {result}
       </tr>
     )
@@ -260,7 +260,7 @@ class TableAbstract extends React.Component {
             <tbody className='table-component__body'>
             {(this.isLoading() ?
               this.getNoItems() :
-              entities.map((entity, index) => this.row(entity, this.getCheckbox(entity), index+1))
+              entities.map((entity, index) => this.row(entity, this.getCheckbox(entity), index))
             )}
             </tbody>
           </table>

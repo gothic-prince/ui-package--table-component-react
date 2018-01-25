@@ -204,7 +204,7 @@ var TableAbstract = function (_React$Component) {
       });
       return _react2.default.createElement(
         'tr',
-        { className: 'table-component__body-row', key: key },
+        { className: 'table-component__body-row', key: key + 1 },
         result
       );
     }
@@ -391,7 +391,7 @@ var TableAbstract = function (_React$Component) {
               'tbody',
               { className: 'table-component__body' },
               this.isLoading() ? this.getNoItems() : entities.map(function (entity, index) {
-                return _this5.row(entity, _this5.getCheckbox(entity), index + 1);
+                return _this5.row(entity, _this5.getCheckbox(entity), index);
               })
             )
           )

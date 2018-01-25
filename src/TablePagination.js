@@ -40,7 +40,7 @@ class TablePagination extends React.Component {
             onClick={(e) => onPrev(e)} />
           <input
             onChange={(e) => onChangeCurrentPage(Number(e.target.value))}
-            children={page}
+            value={page}
             className={classnames([
               'table-pagination__button',
               'table-pagination__set-page',
