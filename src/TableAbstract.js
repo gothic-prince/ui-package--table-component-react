@@ -170,15 +170,25 @@ class TableAbstract extends React.Component {
       </th>
     )
   }
-  /**
-   * @param entities {Array}
-   */
-  handleSelectEntities (entities) {
+
+  handleSelectEntities () {
     const {
       onChoose = null,
       onSelectEntity = onChoose
     } = this.props
     const selectManager = this.getTable().getDataSelectorManager()
+    let entities = []
+    switch (selectManager.get().length) {
+      case 0:
+        entities = this.getData()
+        break
+      case this.getData().length:
+        entities = []
+        break
+      default:
+        entities = this.getData()
+        break
+    }
     selectManager.set(entities)
     onSelectEntity(selectManager.get())
   }

@@ -75,16 +75,17 @@ var SimpleTableComponent = function (_TableAbstract) {
 
       var idSelected = this.getTable().getDataSelectorManager().isChosen(entity);
       if (entity === null) {
-        var entities = this.getTable().getDataSelectorManager().get().length === 0 ? this.getTable().getDataSelectorManager().get() : [];
         return _react2.default.createElement('input', {
+          checked: idSelected ? 'checked' : '',
           className: 'checkbox',
           onChange: function onChange(e) {
-            return _this2.handleSelectEntities(entities);
+            return _this2.handleSelectEntities();
           },
           type: 'checkbox',
           value: idSelected });
       }
       return _react2.default.createElement('input', {
+        checked: idSelected ? 'checked' : '',
         key: index,
         className: 'checkbox',
         onChange: function onChange(e) {

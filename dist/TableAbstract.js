@@ -266,13 +266,9 @@ var TableAbstract = function (_React$Component) {
           active: header.isActive() })
       );
     }
-    /**
-     * @param entities {Array}
-     */
-
   }, {
     key: 'handleSelectEntities',
-    value: function handleSelectEntities(entities) {
+    value: function handleSelectEntities() {
       var _props4 = this.props,
           _props4$onChoose = _props4.onChoose,
           onChoose = _props4$onChoose === undefined ? null : _props4$onChoose,
@@ -280,6 +276,18 @@ var TableAbstract = function (_React$Component) {
           onSelectEntity = _props4$onSelectEntit === undefined ? onChoose : _props4$onSelectEntit;
 
       var selectManager = this.getTable().getDataSelectorManager();
+      var entities = [];
+      switch (selectManager.get().length) {
+        case 0:
+          entities = this.getData();
+          break;
+        case this.getData().length:
+          entities = [];
+          break;
+        default:
+          entities = this.getData();
+          break;
+      }
       selectManager.set(entities);
       onSelectEntity(selectManager.get());
     }

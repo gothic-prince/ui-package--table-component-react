@@ -237,7 +237,6 @@ describe('<SimpleTableComponent />', () => {
       expect(entities.length).toBe(1)
       expect(entities[0]).toBe('Paul')
     })
-/*
     it('it should return array with two item "Paul", "Alex"', () => {
       // >>> settings
       const clickedCheckboxByIndex = 0
@@ -249,7 +248,7 @@ describe('<SimpleTableComponent />', () => {
       const checkbox = row.find('.checkbox')
       expect(checkbox.exists()).toBe(true)
 
-      checkbox.simulate('click')
+      checkbox.simulate('change', {target: {checked: true}})
 
       expect(entities.length).toBe(expectedEntities.length)
 
@@ -259,17 +258,14 @@ describe('<SimpleTableComponent />', () => {
       chosenRowsBiIndex.map((index) => {
         expect(
           wrapper
-            .find('.table-component__body')
-            .find('.table-component__body-row')
-            .at(index)
-            .find('.checkbox')
-            .shallow()
-            .find('.checkbox__mark')
-            .exists()
-        ).toBe(true)
+          .find('.table-component__body')
+          .find('.table-component__body-row')
+          .at(index)
+          .find('.checkbox')
+          .html()
+        ).toBe('<input type="checkbox" checked="" class="checkbox" value="true"/>')
       })
     })
-
     it('it should return array with two item "Paul", "Alex", "Jone"', () => {
       // >>> settings
       const clickedCheckboxByIndex = 2
@@ -280,22 +276,22 @@ describe('<SimpleTableComponent />', () => {
       const row = bodyRows.at(clickedCheckboxByIndex)
       const checkbox = row.find('.checkbox')
       expect(checkbox.exists()).toBe(true)
-      checkbox.simulate('click')
+      checkbox.simulate('change', {target: {checked: true}})
+
       expect(entities.length).toBe(expectedEntities.length)
+
       expectedEntities.map((value) => {
         expect(entities.indexOf(value) !== -1).toBe(true)
       })
       chosenRowsBiIndex.map((index) => {
         expect(
           wrapper
-            .find('.table-component__body')
-            .find('.table-component__body-row')
-            .at(index)
-            .find('.checkbox')
-            .shallow()
-            .find('.checkbox__mark')
-            .exists()
-        ).toBe(true)
+          .find('.table-component__body')
+          .find('.table-component__body-row')
+          .at(index)
+          .find('.checkbox')
+          .html()
+        ).toBe('<input type="checkbox" checked="" class="checkbox" value="true"/>')
       })
     })
     it('it should return array with two item "Paul", "Alex" and without "Jone"', () => {
@@ -308,7 +304,9 @@ describe('<SimpleTableComponent />', () => {
       const row = bodyRows.at(clickedCheckboxByIndex)
       const checkbox = row.find('.checkbox')
       expect(checkbox.exists()).toBe(true)
-      checkbox.simulate('click')
+
+      checkbox.simulate('change', {target: {checked: true}})
+
       expect(entities.length).toBe(expectedEntities.length)
       expectedEntities.map((value) => {
         expect(entities.indexOf(value) !== -1).toBe(true)
@@ -316,14 +314,12 @@ describe('<SimpleTableComponent />', () => {
       chosenRowsBiIndex.map((index) => {
         expect(
           wrapper
-            .find('.table-component__body')
-            .find('.table-component__body-row')
-            .at(index)
-            .find('.checkbox')
-            .shallow()
-            .find('.checkbox__mark')
-            .exists()
-        ).toBe(true)
+          .find('.table-component__body')
+          .find('.table-component__body-row')
+          .at(index)
+          .find('.checkbox')
+          .html()
+        ).toBe('<input type="checkbox" checked="" class="checkbox" value="true"/>')
       })
     })
     it('it should return array with two item "Paul" and without "Jone", "Alex"', () => {
@@ -336,7 +332,9 @@ describe('<SimpleTableComponent />', () => {
       const row = bodyRows.at(clickedCheckboxByIndex)
       const checkbox = row.find('.checkbox')
       expect(checkbox.exists()).toBe(true)
-      checkbox.simulate('click')
+
+      checkbox.simulate('change', {target: {checked: true}})
+
       expect(entities.length).toBe(expectedEntities.length)
       expectedEntities.map((value) => {
         expect(entities.indexOf(value) !== -1).toBe(true)
@@ -344,14 +342,12 @@ describe('<SimpleTableComponent />', () => {
       chosenRowsBiIndex.map((index) => {
         expect(
           wrapper
-            .find('.table-component__body')
-            .find('.table-component__body-row')
-            .at(index)
-            .find('.checkbox')
-            .shallow()
-            .find('.checkbox__mark')
-            .exists()
-        ).toBe(true)
+          .find('.table-component__body')
+          .find('.table-component__body-row')
+          .at(index)
+          .find('.checkbox')
+          .html()
+        ).toBe('<input type="checkbox" checked="" class="checkbox" value="true"/>')
       })
     })
     it('it should return array length 3', () => {
@@ -361,7 +357,9 @@ describe('<SimpleTableComponent />', () => {
       // <<< settings
       const checkbox = chooseAll
       expect(checkbox.exists()).toBe(true)
-      checkbox.simulate('click')
+
+      checkbox.simulate('change', {target: {checked: true}})
+
       expect(entities.length).toBe(expectedEntities.length)
       expectedEntities.map((value) => {
         expect(entities.indexOf(value) !== -1).toBe(true)
@@ -369,14 +367,12 @@ describe('<SimpleTableComponent />', () => {
       chosenRowsBiIndex.map((index) => {
         expect(
           wrapper
-            .find('.table-component__body')
-            .find('.table-component__body-row')
-            .at(index)
-            .find('.checkbox')
-            .shallow()
-            .find('.checkbox__mark')
-            .exists()
-        ).toBe(true)
+          .find('.table-component__body')
+          .find('.table-component__body-row')
+          .at(index)
+          .find('.checkbox')
+          .html()
+        ).toBe('<input type="checkbox" checked="" class="checkbox" value="true"/>')
       })
     })
     it('it should return array length 0', () => {
@@ -386,7 +382,9 @@ describe('<SimpleTableComponent />', () => {
       // <<< settings
       const checkbox = chooseAll
       expect(checkbox.exists()).toBe(true)
-      checkbox.simulate('click')
+
+      checkbox.simulate('change', {target: {checked: true}})
+
       expect(entities.length).toBe(expectedEntities.length)
       expectedEntities.map((value) => {
         expect(entities.indexOf(value) !== -1).toBe(true)
@@ -394,14 +392,12 @@ describe('<SimpleTableComponent />', () => {
       chosenRowsBiIndex.map((index) => {
         expect(
           wrapper
-            .find('.table-component__body')
-            .find('.table-component__body-row')
-            .at(index)
-            .find('.checkbox')
-            .shallow()
-            .find('.checkbox__mark')
-            .exists()
-        ).toBe(true)
+          .find('.table-component__body')
+          .find('.table-component__body-row')
+          .at(index)
+          .find('.checkbox')
+          .html()
+        ).toBe('<input type="checkbox" checked="" class="checkbox" value="true"/>')
       })
     })
     it('it should return array length 3: again', () => {
@@ -411,7 +407,9 @@ describe('<SimpleTableComponent />', () => {
       // <<< settings
       const checkbox = chooseAll
       expect(checkbox.exists()).toBe(true)
-      checkbox.simulate('click')
+
+      checkbox.simulate('change', {target: {checked: true}})
+
       expect(entities.length).toBe(expectedEntities.length)
       expectedEntities.map((value) => {
         expect(entities.indexOf(value) !== -1).toBe(true)
@@ -419,18 +417,14 @@ describe('<SimpleTableComponent />', () => {
       chosenRowsBiIndex.map((index) => {
         expect(
           wrapper
-            .find('.table-component__body')
-            .find('.table-component__body-row')
-            .at(index)
-            .find('.checkbox')
-            .shallow()
-            .find('.checkbox__mark')
-            .exists()
-        ).toBe(true)
+          .find('.table-component__body')
+          .find('.table-component__body-row')
+          .at(index)
+          .find('.checkbox')
+          .html()
+        ).toBe('<input type="checkbox" checked="" class="checkbox" value="true"/>')
       })
     })
-
-    */
   })
 
   describe('Sorting', () => {
