@@ -111,7 +111,9 @@ var TableAbstract = function (_React$Component) {
           this._table = tableModel;
         }
       }
-      this.getTable().getDensityManager().setDensity(density);
+      if (density !== null) {
+        this.getTable().getDensityManager().setDensity(density);
+      }
       this.getTable().getPaginationManager().setLimitRows(maxItems);
     }
   }, {

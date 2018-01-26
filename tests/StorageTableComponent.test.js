@@ -33,6 +33,9 @@ describe('StorageTableComponent', () => {
     it('Should not has checkbox', () => {
       expect(wrapper.find('.table-component__head').find('.table-component__column-checkbox').exists()).toBe(false)
     })
+    it('should return true', () => {
+      expect(wrapper.find(TableSizeComponent).find('.table-size-component__switcher_middle').hasClass('table-size-component__switcher_active')).toBe(true)
+    })
     it('Should has field with label "name"', () => {
       expect(
         wrapper
