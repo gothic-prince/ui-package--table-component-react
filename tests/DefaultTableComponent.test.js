@@ -2,15 +2,15 @@ import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from "enzyme-adapter-react-16"
 Enzyme.configure({ adapter: new Adapter() });
-import SimpleTableComponent from '../dist/SimpleTableComponent'
+import DefaultTableComponent from '../dist/DefaultTableComponent'
 import ColumnEntityFactory from 'ui-package--table-component/dist/Factories/ColumnEntityFactory'
 import SortComponent from '../dist/SortComponent'
 
-describe('<SimpleTableComponent />', () => {
+describe('<DefaultTableComponent />', () => {
   describe('Header', () => {
     describe('Fields: name, phone', () => {
       const wrapper = shallow(
-        <SimpleTableComponent
+        <DefaultTableComponent
           createBodyColumns={(entity) => {}}
           createHeadColumns={() => {
             return new ColumnEntityFactory()
@@ -45,7 +45,7 @@ describe('<SimpleTableComponent />', () => {
     })
     describe('Fields: customer, id, emails', () => {
       const wrapper = shallow(
-        <SimpleTableComponent
+        <DefaultTableComponent
           createBodyColumns={(entity) => {}}
           createHeadColumns={() => {
             return new ColumnEntityFactory()
@@ -111,7 +111,7 @@ describe('<SimpleTableComponent />', () => {
         {name: 'Paul', phone: '627363'}
       ]
       const wrapper = shallow(
-        <SimpleTableComponent
+        <DefaultTableComponent
           entities={data}
           onSelectEntity={() => {}}
           createBodyColumns={(entity) => {
@@ -153,7 +153,7 @@ describe('<SimpleTableComponent />', () => {
       ]
 
       const wrapper = shallow(
-        <SimpleTableComponent
+        <DefaultTableComponent
           entities={data}
           onSelectEntity={() => {}}
           createBodyColumns={(entity) => {
@@ -201,7 +201,7 @@ describe('<SimpleTableComponent />', () => {
     ]
     let entities = []
     const wrapper = shallow(
-      <SimpleTableComponent
+      <DefaultTableComponent
         entities={entitiesInit}
         onSelectEntity={(data) => {
           entities = data
@@ -443,7 +443,7 @@ describe('<SimpleTableComponent />', () => {
 
   describe('Sorting', () => {
     const wrapper = shallow(
-      <SimpleTableComponent
+      <DefaultTableComponent
         entities={[]}
         onSelectEntity={() => {}}
         createBodyColumns={(entity) => {

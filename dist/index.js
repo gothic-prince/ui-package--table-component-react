@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _SimpleTableComponent = require('./SimpleTableComponent');
+var _DefaultTableComponent = require('./DefaultTableComponent');
 
-var _SimpleTableComponent2 = _interopRequireDefault(_SimpleTableComponent);
+var _DefaultTableComponent2 = _interopRequireDefault(_DefaultTableComponent);
 
 require('./Styles/TableComponent.pcss');
 
@@ -22,4 +22,4 @@ require('./Styles/TablePageComponent.pcss');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _SimpleTableComponent2.default;
+exports.default = _DefaultTableComponent2.default;

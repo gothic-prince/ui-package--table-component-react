@@ -44,13 +44,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SimpleTableComponent = function (_TableAbstract) {
-  _inherits(SimpleTableComponent, _TableAbstract);
+var DefaultTableComponent = function (_TableAbstract) {
+  _inherits(DefaultTableComponent, _TableAbstract);
 
-  function SimpleTableComponent() {
-    _classCallCheck(this, SimpleTableComponent);
+  function DefaultTableComponent() {
+    _classCallCheck(this, DefaultTableComponent);
 
-    return _possibleConstructorReturn(this, (SimpleTableComponent.__proto__ || Object.getPrototypeOf(SimpleTableComponent)).call(this));
+    return _possibleConstructorReturn(this, (DefaultTableComponent.__proto__ || Object.getPrototypeOf(DefaultTableComponent)).call(this));
   }
 
   /**
@@ -58,7 +58,7 @@ var SimpleTableComponent = function (_TableAbstract) {
    */
 
 
-  _createClass(SimpleTableComponent, [{
+  _createClass(DefaultTableComponent, [{
     key: 'isLoading',
     value: function isLoading() {
       var loaded = this.props.loaded;
@@ -130,7 +130,7 @@ var SimpleTableComponent = function (_TableAbstract) {
 
       var sizeClass = 'table-component__size_' + size + 'x ';
       var quantityClass = 'table-component__quantity-' + quantity + '';
-      return _get(SimpleTableComponent.prototype.__proto__ || Object.getPrototypeOf(SimpleTableComponent.prototype), 'getClassName', this).call(this) + sizeClass + quantityClass;
+      return _get(DefaultTableComponent.prototype.__proto__ || Object.getPrototypeOf(DefaultTableComponent.prototype), 'getClassName', this).call(this) + sizeClass + quantityClass;
     }
   }, {
     key: 'getTheme',
@@ -220,10 +220,10 @@ var SimpleTableComponent = function (_TableAbstract) {
     }
   }]);
 
-  return SimpleTableComponent;
+  return DefaultTableComponent;
 }(_TableAbstract3.default);
 
-SimpleTableComponent.propTypes = {
+DefaultTableComponent.propTypes = {
   createHeadColumns: _propTypes2.default.func,
   createBodyColumns: _propTypes2.default.func,
   tableModel: _propTypes2.default.instanceOf(_TableFacadeAbstract2.default),
@@ -246,4 +246,4 @@ SimpleTableComponent.propTypes = {
   needDensity: _propTypes2.default.bool,
   theme: _propTypes2.default.string
 };
-exports.default = SimpleTableComponent;
+exports.default = DefaultTableComponent;

@@ -1,12 +1,12 @@
 ### Introduction:
 This package implements [models](https://github.com/ui-package/table-component).
 
-![SimpleTableComponent](https://raw.githubusercontent.com/gothic-prince/ui-package--table-component-react/master/images/SimpleTableComponent.png)
+![DefaultTableComponent](https://raw.githubusercontent.com/gothic-prince/ui-package--table-component-react/master/images/DefaultTableComponent.png)
 
 ### Example: 
 ```javascript
 import ColumnEntityFactory from 'ui-package--table-component/dist/Factories/ColumnEntityFactory'
-import SimpleTableComponent from 'ui-package--table-component-react/dist/SimpleTableComponent'
+import DefaultTableComponent from 'ui-package--table-component-react/dist/DefaultTableComponent'
 
 const data = [
     {name: 'Alex', phone: '98234798234'},
@@ -18,7 +18,7 @@ const data = [
 ```
 
 ```javascript
-<SimpleTableComponent
+<DefaultTableComponent
   entities={data}
   onSelectEntity={() => {}}
   createBodyColumns={(entity) => {

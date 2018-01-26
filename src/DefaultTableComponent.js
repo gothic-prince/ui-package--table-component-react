@@ -5,7 +5,7 @@ import TablePagination from './TablePagination'
 import TableFacadeAbstract from 'ui-package--table-component/dist/Facades/TableFacadeAbstract'
 import TableSizeComponent from './TableSizeComponent';
 import TableResetComponent from './TableResetComponent';
-class SimpleTableComponent extends TableAbstract {
+class DefaultTableComponent extends TableAbstract {
   constructor() {
     super()
   }
@@ -135,7 +135,7 @@ class SimpleTableComponent extends TableAbstract {
     )
   }
 }
-SimpleTableComponent.propTypes = {
+DefaultTableComponent.propTypes = {
   createHeadColumns: PropTypes.func,
   createBodyColumns: PropTypes.func,
   tableModel: PropTypes.instanceOf(TableFacadeAbstract),
@@ -158,4 +158,4 @@ SimpleTableComponent.propTypes = {
   needDensity: PropTypes.bool,
   theme: PropTypes.string
 }
-export default SimpleTableComponent
+export default DefaultTableComponent
