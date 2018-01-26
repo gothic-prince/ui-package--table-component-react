@@ -124,4 +124,4 @@ StorageTableComponent.propTypes = {
   tableName: _propTypes2.default.string.isRequired,
   storage: _propTypes2.default.instanceOf(_StorageInterface2.default)
 };
-exports.default = _DefaultTableComponent2.default;
+exports.default = StorageTableComponent;

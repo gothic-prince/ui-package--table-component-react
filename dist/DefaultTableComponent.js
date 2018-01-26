@@ -50,16 +50,16 @@ var DefaultTableComponent = function (_TableAbstract) {
   function DefaultTableComponent() {
     _classCallCheck(this, DefaultTableComponent);
 
-    return _possibleConstructorReturn(this, (DefaultTableComponent.__proto__ || Object.getPrototypeOf(DefaultTableComponent)).call(this));
+    return _possibleConstructorReturn(this, (DefaultTableComponent.__proto__ || Object.getPrototypeOf(DefaultTableComponent)).apply(this, arguments));
   }
-
-  /**
-   * @return {boolean}
-   */
-
 
   _createClass(DefaultTableComponent, [{
     key: 'isLoading',
+
+
+    /**
+     * @return {boolean}
+     */
     value: function isLoading() {
       var loaded = this.props.loaded;
 

@@ -6,9 +6,6 @@ import TableFacadeAbstract from 'ui-package--table-component/dist/Facades/TableF
 import TableSizeComponent from './TableSizeComponent';
 import TableResetComponent from './TableResetComponent';
 class DefaultTableComponent extends TableAbstract {
-  constructor() {
-    super()
-  }
 
   /**
    * @return {boolean}
