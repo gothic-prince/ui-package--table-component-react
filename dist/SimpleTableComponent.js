@@ -135,7 +135,7 @@ var SimpleTableComponent = function (_TableAbstract) {
   }, {
     key: 'getTheme',
     value: function getTheme() {
-      return 'table-component__theme_default';
+      return this.props.theme || 'table-component__theme_default';
     }
   }, {
     key: 'getChildren',
@@ -243,6 +243,7 @@ SimpleTableComponent.propTypes = {
   onReset: _propTypes2.default.func,
   onChangeCurrentPage: _propTypes2.default.func,
   comparison: _propTypes2.default.func,
-  needDensity: _propTypes2.default.bool
+  needDensity: _propTypes2.default.bool,
+  theme: _propTypes2.default.string
 };
 exports.default = SimpleTableComponent;

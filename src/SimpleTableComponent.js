@@ -72,7 +72,7 @@ class SimpleTableComponent extends TableAbstract {
     return super.getClassName() + sizeClass + quantityClass
   }
   getTheme () {
-    return 'table-component__theme_default'
+    return this.props.theme || 'table-component__theme_default'
   }
   getChildren() {
     return this.props.children
@@ -156,5 +156,6 @@ SimpleTableComponent.propTypes = {
   onChangeCurrentPage: PropTypes.func,
   comparison: PropTypes.func,
   needDensity: PropTypes.bool,
+  theme: PropTypes.string
 }
 export default SimpleTableComponent

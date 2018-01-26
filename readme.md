@@ -1,6 +1,8 @@
 ### Introduction:
 This package implements [models](https://github.com/ui-package/table-component).
 
+![](./images/SimpleTableComponent.png)
+
 ### Example: 
 ```javascript
 import ColumnEntityFactory from 'ui-package--table-component/dist/Factories/ColumnEntityFactory'
@@ -56,4 +58,6 @@ const data = [
 | children | | | |
 | loaded | Boolean | | It need you if you use async |
 | needDensity | Boolean | |  |
+| theme | String | table-component__theme_default |  |
+
 
