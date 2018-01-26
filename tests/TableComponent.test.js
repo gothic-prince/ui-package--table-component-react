@@ -358,12 +358,18 @@ describe('<SimpleTableComponent />', () => {
       const checkbox = chooseAll
       expect(checkbox.exists()).toBe(true)
 
+      expect(wrapper.find('.table-component__head').find('.checkbox').html()).toBe('<input type="checkbox" class="checkbox" value="false"/>')
+
       checkbox.simulate('change', {target: {checked: true}})
+
+      expect(wrapper.find('.table-component__head').find('.checkbox').html()).toBe('<input type="checkbox" checked="" class="checkbox" value="true"/>')
 
       expect(entities.length).toBe(expectedEntities.length)
       expectedEntities.map((value) => {
         expect(entities.indexOf(value) !== -1).toBe(true)
       })
+
+
       chosenRowsBiIndex.map((index) => {
         expect(
           wrapper
@@ -383,7 +389,11 @@ describe('<SimpleTableComponent />', () => {
       const checkbox = chooseAll
       expect(checkbox.exists()).toBe(true)
 
+      expect(wrapper.find('.table-component__head').find('.checkbox').html()).toBe('<input type="checkbox" checked="" class="checkbox" value="true"/>')
+
       checkbox.simulate('change', {target: {checked: true}})
+
+      expect(wrapper.find('.table-component__head').find('.checkbox').html()).toBe('<input type="checkbox" class="checkbox" value="false"/>')
 
       expect(entities.length).toBe(expectedEntities.length)
       expectedEntities.map((value) => {
@@ -408,7 +418,11 @@ describe('<SimpleTableComponent />', () => {
       const checkbox = chooseAll
       expect(checkbox.exists()).toBe(true)
 
+      expect(wrapper.find('.table-component__head').find('.checkbox').html()).toBe('<input type="checkbox" class="checkbox" value="false"/>')
+
       checkbox.simulate('change', {target: {checked: true}})
+
+      expect(wrapper.find('.table-component__head').find('.checkbox').html()).toBe('<input type="checkbox" checked="" class="checkbox" value="true"/>')
 
       expect(entities.length).toBe(expectedEntities.length)
       expectedEntities.map((value) => {

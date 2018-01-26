@@ -23,17 +23,21 @@ class SimpleTableComponent extends TableAbstract {
     return this.getData().length === 0 || loaded === false
   }
   getCheckbox(entity, index){
-    const idSelected = this.getTable().getDataSelectorManager().isChosen(entity)
     if (entity === null) {
+      const allSelected = (
+        this.getTable().getDataSelectorManager().get().length === this.getData().length &&
+        this.getTable().getDataSelectorManager().get().length !== 0
+      )
       return (
         <input
-          checked={idSelected ? 'checked' : ''}
+          checked={allSelected ? 'checked' : ''}
           className="checkbox"
           onChange={(e) => this.handleSelectEntities()}
           type="checkbox"
-          value={idSelected} />
+          value={allSelected} />
       )
     }
+    const idSelected = this.getTable().getDataSelectorManager().isChosen(entity)
     return (
       <input
         checked={idSelected ? 'checked' : ''}
