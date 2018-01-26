@@ -1,7 +1,7 @@
 ### Introduction:
 This package implements [models](https://github.com/ui-package/table-component).
 
-![](./images/SimpleTableComponent.png)
+![SimpleTableComponent](https://raw.githubusercontent.com/gothic-prince/ui-package--table-component-react/master/images/SimpleTableComponent.png)
 
 ### Example: 
 ```javascript
