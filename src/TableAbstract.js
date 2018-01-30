@@ -253,23 +253,20 @@ class TableAbstract extends React.Component {
   }
   render(){
     const entities = this.getTable().getEntities(this.getData())
-
     return (
-      <div className='table-page-component__data'>
-        <table className={classnames([
-          'table-component',
-          this.getTheme(),
-          this.getClassName()
-        ])}>
-          {this.getHeader()}
-          <tbody className='table-component__body'>
-          {(this.isLoading() ?
-              this.getNoItems() :
-              entities.map((entity, index) => this.row(entity, this.getCheckbox(entity, index), index))
-          )}
-          </tbody>
-        </table>
-      </div>
+      <table className={classnames([
+        'table-component',
+        this.getTheme(),
+        this.getClassName()
+      ])}>
+        {this.getHeader()}
+        <tbody className='table-component__body'>
+        {(this.isLoading() ?
+            this.getNoItems() :
+            entities.map((entity, index) => this.row(entity, this.getCheckbox(entity, index), index))
+        )}
+        </tbody>
+      </table>
     )
   }
 }

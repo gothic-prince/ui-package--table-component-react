@@ -375,21 +375,16 @@ var TableAbstract = function (_React$Component) {
       var _this6 = this;
 
       var entities = this.getTable().getEntities(this.getData());
-
       return _react2.default.createElement(
-        'div',
-        { className: 'table-page-component__data' },
+        'table',
+        { className: (0, _classnames2.default)(['table-component', this.getTheme(), this.getClassName()]) },
+        this.getHeader(),
         _react2.default.createElement(
-          'table',
-          { className: (0, _classnames2.default)(['table-component', this.getTheme(), this.getClassName()]) },
-          this.getHeader(),
-          _react2.default.createElement(
-            'tbody',
-            { className: 'table-component__body' },
-            this.isLoading() ? this.getNoItems() : entities.map(function (entity, index) {
-              return _this6.row(entity, _this6.getCheckbox(entity, index), index);
-            })
-          )
+          'tbody',
+          { className: 'table-component__body' },
+          this.isLoading() ? this.getNoItems() : entities.map(function (entity, index) {
+            return _this6.row(entity, _this6.getCheckbox(entity, index), index);
+          })
         )
       );
     }
