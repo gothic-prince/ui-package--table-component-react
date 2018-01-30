@@ -22,8 +22,6 @@ var _SortComponent = require('./SortComponent');
 
 var _SortComponent2 = _interopRequireDefault(_SortComponent);
 
-var _constants = require('./constants');
-
 var _TableBuilder = require('ui-package--table-component/dist/Builders/TableBuilder/TableBuilder');
 
 var _TableBuilder2 = _interopRequireDefault(_TableBuilder);
@@ -59,15 +57,20 @@ var TableAbstract = function (_React$Component) {
     _this.state = {};
     _this._table = null;
     _this._builder = null;
+    _this.reRender = _this.reRender.bind(_this);
     return _this;
   }
 
-  /**
-   * @return {null|TableBuilderAbstract}
-   */
-
-
   _createClass(TableAbstract, [{
+    key: 'reRender',
+    value: function reRender() {
+      this.forceUpdate();
+    }
+    /**
+     * @return {null|TableBuilderAbstract}
+     */
+
+  }, {
     key: 'getBuilder',
     value: function getBuilder() {
       var _this2 = this;
@@ -83,7 +86,7 @@ var TableAbstract = function (_React$Component) {
       if (createHeadColumns !== null && createBodyColumns !== null) {
         var columnManager = new _ColumnManager2.default(createBodyColumns, createHeadColumns());
         this._builder = new _TableBuilder2.default(function () {
-          return _this2.forceUpdate();
+          return _this2.reRender();
         }, columnManager);
       }
       if (comparison !== null) {
@@ -94,27 +97,21 @@ var TableAbstract = function (_React$Component) {
   }, {
     key: 'componentWillMount',
     value: function componentWillMount() {
-      var _props2 = this.props,
-          _props2$tableModel = _props2.tableModel,
-          tableModel = _props2$tableModel === undefined ? null : _props2$tableModel,
-          _props2$size = _props2.size,
-          size = _props2$size === undefined ? null : _props2$size,
-          _props2$density = _props2.density,
-          density = _props2$density === undefined ? size : _props2$density,
-          _props2$maxItems = _props2.maxItems,
-          maxItems = _props2$maxItems === undefined ? _constants.TABLE_LIMIT_ROWS_BY_DEFAULT : _props2$maxItems;
+      var _this3 = this;
+
+      var _props$table = this.props.table,
+          table = _props$table === undefined ? null : _props$table;
 
       if (this._table === null) {
         if (this.getBuilder() !== null) {
           this._table = this.getBuilder().getTableFacade();
         } else {
-          this._table = tableModel;
+          this._table = table;
+          this._table.getRenderManager().addEvent(function () {
+            return _this3.reRender();
+          });
         }
       }
-      if (density !== null) {
-        this.getTable().getDensityManager().setDensity(density);
-      }
-      this.getTable().getPaginationManager().setLimitRows(maxItems);
     }
   }, {
     key: 'getCheckbox',
@@ -151,23 +148,27 @@ var TableAbstract = function (_React$Component) {
   }, {
     key: 'isLoading',
     value: function isLoading() {
-      var entities = this.getData();
-      return entities.length === 0;
+      var loaded = this.props.loaded;
+
+      if (loaded === undefined) {
+        return this.getData().length === 0;
+      }
+      return this.getData().length === 0 || loaded === false;
     }
   }, {
     key: 'row',
     value: function row(entity, checkbox, key) {
-      var _props3 = this.props,
-          _props3$onChoose = _props3.onChoose,
-          onChoose = _props3$onChoose === undefined ? null : _props3$onChoose,
-          _props3$onSelectEntit = _props3.onSelectEntity,
-          onSelectEntity = _props3$onSelectEntit === undefined ? onChoose : _props3$onSelectEntit,
-          _props3$onContextMenu = _props3.onContextMenu,
-          _onContextMenu = _props3$onContextMenu === undefined ? function (e, entity) {} : _props3$onContextMenu,
-          _props3$onClick = _props3.onClick,
-          _onClick = _props3$onClick === undefined ? function (e, entity) {} : _props3$onClick,
-          _props3$onDoubleClick = _props3.onDoubleClick,
-          _onDoubleClick = _props3$onDoubleClick === undefined ? function (e, entity) {} : _props3$onDoubleClick;
+      var _props2 = this.props,
+          _props2$onChoose = _props2.onChoose,
+          onChoose = _props2$onChoose === undefined ? null : _props2$onChoose,
+          _props2$onSelectEntit = _props2.onSelectEntity,
+          onSelectEntity = _props2$onSelectEntit === undefined ? onChoose : _props2$onSelectEntit,
+          _props2$onContextMenu = _props2.onContextMenu,
+          _onContextMenu = _props2$onContextMenu === undefined ? function (e, entity) {} : _props2$onContextMenu,
+          _props2$onClick = _props2.onClick,
+          _onClick = _props2$onClick === undefined ? function (e, entity) {} : _props2$onClick,
+          _props2$onDoubleClick = _props2.onDoubleClick,
+          _onDoubleClick = _props2$onDoubleClick === undefined ? function (e, entity) {} : _props2$onDoubleClick;
 
       var columns = this.getTable().getColumnManager().createBodyColumns(entity);
       var headers = this.getTable().getColumnManager().getHeadColumns();
@@ -250,7 +251,7 @@ var TableAbstract = function (_React$Component) {
   }, {
     key: 'renderHeaderField',
     value: function renderHeaderField(header, key) {
-      var _this3 = this;
+      var _this4 = this;
 
       if (header.isHidden() === true) {
         return null;
@@ -260,7 +261,7 @@ var TableAbstract = function (_React$Component) {
         {
           className: 'table-component__header-field',
           onClick: function onClick() {
-            return _this3.handleSortingBy(header);
+            return _this4.handleSortingBy(header);
           },
           key: key },
         _react2.default.createElement(
@@ -276,11 +277,11 @@ var TableAbstract = function (_React$Component) {
   }, {
     key: 'handleSelectEntities',
     value: function handleSelectEntities() {
-      var _props4 = this.props,
-          _props4$onChoose = _props4.onChoose,
-          onChoose = _props4$onChoose === undefined ? null : _props4$onChoose,
-          _props4$onSelectEntit = _props4.onSelectEntity,
-          onSelectEntity = _props4$onSelectEntit === undefined ? onChoose : _props4$onSelectEntit;
+      var _props3 = this.props,
+          _props3$onChoose = _props3.onChoose,
+          onChoose = _props3$onChoose === undefined ? null : _props3$onChoose,
+          _props3$onSelectEntit = _props3.onSelectEntity,
+          onSelectEntity = _props3$onSelectEntit === undefined ? onChoose : _props3$onSelectEntit;
 
       var selectManager = this.getTable().getDataSelectorManager();
       var entities = [];
@@ -305,11 +306,11 @@ var TableAbstract = function (_React$Component) {
   }, {
     key: 'handleSelectEntity',
     value: function handleSelectEntity(entity) {
-      var _props5 = this.props,
-          _props5$onChoose = _props5.onChoose,
-          onChoose = _props5$onChoose === undefined ? null : _props5$onChoose,
-          _props5$onSelectEntit = _props5.onSelectEntity,
-          onSelectEntity = _props5$onSelectEntit === undefined ? onChoose : _props5$onSelectEntit;
+      var _props4 = this.props,
+          _props4$onChoose = _props4.onChoose,
+          onChoose = _props4$onChoose === undefined ? null : _props4$onChoose,
+          _props4$onSelectEntit = _props4.onSelectEntity,
+          onSelectEntity = _props4$onSelectEntit === undefined ? onChoose : _props4$onSelectEntit;
 
       var selectManager = this.getTable().getDataSelectorManager();
       selectManager.add(entity);
@@ -318,13 +319,13 @@ var TableAbstract = function (_React$Component) {
   }, {
     key: 'getHeader',
     value: function getHeader() {
-      var _this4 = this;
+      var _this5 = this;
 
-      var _props6 = this.props,
-          _props6$onChoose = _props6.onChoose,
-          onChoose = _props6$onChoose === undefined ? null : _props6$onChoose,
-          _props6$onSelectEntit = _props6.onSelectEntity,
-          onSelectEntity = _props6$onSelectEntit === undefined ? onChoose : _props6$onSelectEntit;
+      var _props5 = this.props,
+          _props5$onChoose = _props5.onChoose,
+          onChoose = _props5$onChoose === undefined ? null : _props5$onChoose,
+          _props5$onSelectEntit = _props5.onSelectEntity,
+          onSelectEntity = _props5$onSelectEntit === undefined ? onChoose : _props5$onSelectEntit;
 
       var columnManager = this.getTable().getColumnManager();
       return _react2.default.createElement(
@@ -339,7 +340,7 @@ var TableAbstract = function (_React$Component) {
             this.getCheckbox(null)
           ),
           columnManager.getHeadColumns().map(function (column, key) {
-            return _this4.renderHeaderField(column, key);
+            return _this5.renderHeaderField(column, key);
           })
         )
       );
@@ -369,52 +370,26 @@ var TableAbstract = function (_React$Component) {
       onChangeDensity(densityManager.getDensity());
     }
   }, {
-    key: 'getTop',
-    value: function getTop() {
-      return null;
-    }
-  }, {
-    key: 'getBottom',
-    value: function getBottom() {
-      return null;
-    }
-  }, {
     key: 'render',
     value: function render() {
-      var _this5 = this;
+      var _this6 = this;
 
       var entities = this.getTable().getEntities(this.getData());
-      if (this.getTable() === null) {
-        return null;
-      }
+
       return _react2.default.createElement(
         'div',
-        { className: 'table-page-component' },
+        { className: 'table-page-component__data' },
         _react2.default.createElement(
-          'div',
-          { className: 'table-page-component__Header' },
-          this.getTop()
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'table-page-component__data' },
+          'table',
+          { className: (0, _classnames2.default)(['table-component', this.getTheme(), this.getClassName()]) },
+          this.getHeader(),
           _react2.default.createElement(
-            'table',
-            { className: (0, _classnames2.default)(['table-component', this.getTheme(), this.getClassName()]) },
-            this.getHeader(),
-            _react2.default.createElement(
-              'tbody',
-              { className: 'table-component__body' },
-              this.isLoading() ? this.getNoItems() : entities.map(function (entity, index) {
-                return _this5.row(entity, _this5.getCheckbox(entity, index), index);
-              })
-            )
+            'tbody',
+            { className: 'table-component__body' },
+            this.isLoading() ? this.getNoItems() : entities.map(function (entity, index) {
+              return _this6.row(entity, _this6.getCheckbox(entity, index), index);
+            })
           )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'table-page-component__bottom' },
-          this.getBottom()
         )
       );
     }
@@ -424,18 +399,19 @@ var TableAbstract = function (_React$Component) {
 }(_react2.default.Component);
 
 TableAbstract.propTypes = {
-  entities: _propTypes2.default.array,
   createHeadColumns: _propTypes2.default.func,
   createBodyColumns: _propTypes2.default.func,
-  tableModel: _propTypes2.default.instanceOf(_TableFacadeAbstract2.default),
+  table: _propTypes2.default.instanceOf(_TableFacadeAbstract2.default),
+  entities: _propTypes2.default.array,
   onChoose: _propTypes2.default.func,
   onSelectEntity: _propTypes2.default.func,
-  onChangeDensity: _propTypes2.default.func,
   onSort: _propTypes2.default.func,
   onDoubleClick: _propTypes2.default.func,
   onClick: _propTypes2.default.func,
   onContextMenu: _propTypes2.default.func,
+  className: _propTypes2.default.string,
+  loaded: _propTypes2.default.bool,
   comparison: _propTypes2.default.func,
-  className: _propTypes2.default.string
+  theme: _propTypes2.default.string
 };
 exports.default = TableAbstract;

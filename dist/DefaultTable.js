@@ -20,21 +20,9 @@ var _TableAbstract2 = require('./TableAbstract');
 
 var _TableAbstract3 = _interopRequireDefault(_TableAbstract2);
 
-var _TablePagination = require('./TablePagination');
-
-var _TablePagination2 = _interopRequireDefault(_TablePagination);
-
 var _TableFacadeAbstract = require('ui-package--table-component/dist/Facades/TableFacadeAbstract');
 
 var _TableFacadeAbstract2 = _interopRequireDefault(_TableFacadeAbstract);
-
-var _TableSizeComponent = require('./TableSizeComponent');
-
-var _TableSizeComponent2 = _interopRequireDefault(_TableSizeComponent);
-
-var _TableResetComponent = require('./TableResetComponent');
-
-var _TableResetComponent2 = _interopRequireDefault(_TableResetComponent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44,31 +32,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DefaultTableComponent = function (_TableAbstract) {
-  _inherits(DefaultTableComponent, _TableAbstract);
+var DefaultTable = function (_TableAbstract) {
+  _inherits(DefaultTable, _TableAbstract);
 
-  function DefaultTableComponent() {
-    _classCallCheck(this, DefaultTableComponent);
+  function DefaultTable() {
+    _classCallCheck(this, DefaultTable);
 
-    return _possibleConstructorReturn(this, (DefaultTableComponent.__proto__ || Object.getPrototypeOf(DefaultTableComponent)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (DefaultTable.__proto__ || Object.getPrototypeOf(DefaultTable)).apply(this, arguments));
   }
 
-  _createClass(DefaultTableComponent, [{
-    key: 'isLoading',
-
-
-    /**
-     * @return {boolean}
-     */
-    value: function isLoading() {
-      var loaded = this.props.loaded;
-
-      if (loaded === undefined) {
-        return this.getData().length === 0;
-      }
-      return this.getData().length === 0 || loaded === false;
-    }
-  }, {
+  _createClass(DefaultTable, [{
     key: 'getCheckbox',
     value: function getCheckbox(entity, index) {
       var _this2 = this;
@@ -130,120 +103,32 @@ var DefaultTableComponent = function (_TableAbstract) {
 
       var sizeClass = 'table-component__size_' + size + 'x ';
       var quantityClass = 'table-component__quantity-' + quantity + '';
-      return _get(DefaultTableComponent.prototype.__proto__ || Object.getPrototypeOf(DefaultTableComponent.prototype), 'getClassName', this).call(this) + sizeClass + quantityClass;
+      return _get(DefaultTable.prototype.__proto__ || Object.getPrototypeOf(DefaultTable.prototype), 'getClassName', this).call(this) + sizeClass + quantityClass;
     }
   }, {
     key: 'getTheme',
     value: function getTheme() {
       return this.props.theme || 'table-component__theme_default';
     }
-  }, {
-    key: 'getChildren',
-    value: function getChildren() {
-      return this.props.children;
-    }
-  }, {
-    key: 'handleReset',
-    value: function handleReset() {
-      var _props$onReset = this.props.onReset,
-          onReset = _props$onReset === undefined ? function () {} : _props$onReset;
-
-      onReset();
-    }
-  }, {
-    key: 'getTop',
-    value: function getTop() {
-      var _this3 = this;
-
-      var _props = this.props,
-          _props$loaded2 = _props.loaded,
-          loaded = _props$loaded2 === undefined ? true : _props$loaded2,
-          _props$onReset2 = _props.onReset,
-          onReset = _props$onReset2 === undefined ? null : _props$onReset2,
-          _props$needDensity = _props.needDensity,
-          needDensity = _props$needDensity === undefined ? true : _props$needDensity;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        needDensity === true && _react2.default.createElement(_TableSizeComponent2.default, {
-          size: this.getDensity(),
-          onChange: function onChange(density) {
-            return _this3.handleChangeDensity(density);
-          } }),
-        onReset === null && _react2.default.createElement(_TableResetComponent2.default, {
-          loaded: loaded,
-          onReset: function onReset() {
-            return _this3.handleReset();
-          } }),
-        this.getChildren()
-      );
-    }
-  }, {
-    key: 'getBottom',
-    value: function getBottom() {
-      var _props2 = this.props,
-          _props2$onChangeMaxIt = _props2.onChangeMaxItems,
-          _onChangeMaxItems = _props2$onChangeMaxIt === undefined ? function () {} : _props2$onChangeMaxIt,
-          _props2$onChangeCurre = _props2.onChangeCurrentPage,
-          _onChangeCurrentPage = _props2$onChangeCurre === undefined ? function () {} : _props2$onChangeCurre;
-
-      var entities = this.getData();
-      var pagination = this.getTable().getPaginationManager();
-      return _react2.default.createElement(_TablePagination2.default, {
-        onChangeCurrentPage: function onChangeCurrentPage(value) {
-          var page = Number.isNaN(Number(value)) ? 1 : Number(value);
-          pagination.setCurrentPage(page);
-          _onChangeCurrentPage(page);
-        },
-        onChangeMaxItems: function onChangeMaxItems(value) {
-          pagination.setLimitRows(value);
-          _onChangeMaxItems(value);
-        },
-        hasPrev: pagination.hasPrev(entities),
-        hasNext: pagination.hasNext(entities),
-        onFirst: function onFirst() {
-          return pagination.first(entities);
-        },
-        onPrev: function onPrev() {
-          return pagination.prev(entities);
-        },
-        onNext: function onNext() {
-          return pagination.next(entities);
-        },
-        onLast: function onLast() {
-          return pagination.latest(entities);
-        },
-        limitRows: pagination.getLimitRows(),
-        arrayLimitRows: pagination.getArrayLimitRows(),
-        page: pagination.getCurrentPage() });
-    }
   }]);
 
-  return DefaultTableComponent;
+  return DefaultTable;
 }(_TableAbstract3.default);
 
-DefaultTableComponent.propTypes = {
+DefaultTable.propTypes = {
   createHeadColumns: _propTypes2.default.func,
   createBodyColumns: _propTypes2.default.func,
-  tableModel: _propTypes2.default.instanceOf(_TableFacadeAbstract2.default),
+  table: _propTypes2.default.instanceOf(_TableFacadeAbstract2.default),
   entities: _propTypes2.default.array,
   onChoose: _propTypes2.default.func,
   onSelectEntity: _propTypes2.default.func,
-  onChangeDensity: _propTypes2.default.func,
   onSort: _propTypes2.default.func,
   onDoubleClick: _propTypes2.default.func,
   onClick: _propTypes2.default.func,
   onContextMenu: _propTypes2.default.func,
   className: _propTypes2.default.string,
-  children: _propTypes2.default.any,
-  onChangeMaxItems: _propTypes2.default.func,
   loaded: _propTypes2.default.bool,
-  quantity: _propTypes2.default.number,
-  onReset: _propTypes2.default.func,
-  onChangeCurrentPage: _propTypes2.default.func,
   comparison: _propTypes2.default.func,
-  needDensity: _propTypes2.default.bool,
   theme: _propTypes2.default.string
 };
-exports.default = DefaultTableComponent;
+exports.default = DefaultTable;

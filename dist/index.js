@@ -4,22 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _DefaultTableComponent = require('./DefaultTableComponent');
+var _DefaultTable = require('./DefaultTable');
 
-var _DefaultTableComponent2 = _interopRequireDefault(_DefaultTableComponent);
-
-require('./Styles/TableComponent.pcss');
-
-require('./Styles/SortComponent.pcss');
-
-require('./Styles/TableSizeComponent.pcss');
-
-require('./Styles/TableResetComponent.pcss');
-
-require('./Styles/TablePagination.pcss');
-
-require('./Styles/TablePageComponent.pcss');
+var _DefaultTable2 = _interopRequireDefault(_DefaultTable);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _DefaultTableComponent2.default;
+exports.default = _DefaultTable2.default;

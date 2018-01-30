@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react'
 import classnames from 'classnames'
 import SortComponent from './SortComponent'
-import {TABLE_LIMIT_ROWS_BY_DEFAULT} from './constants'
 import TableBuilder from 'ui-package--table-component/dist/Builders/TableBuilder/TableBuilder'
 import TableBuilderAbstract from 'ui-package--table-component/dist/Builders/TableBuilder/TableBuilderAbstract'
 import ColumnManager from 'ui-package--table-component/dist/Models/ColumnManager/ColumnManager';
@@ -13,8 +12,11 @@ class TableAbstract extends React.Component {
     this.state = {}
     this._table = null
     this._builder = null
+    this.reRender = this.reRender.bind(this)
   }
-
+  reRender () {
+    this.forceUpdate()
+  }
   /**
    * @return {null|TableBuilderAbstract}
    */
@@ -33,7 +35,7 @@ class TableAbstract extends React.Component {
     } = this.props
     if (createHeadColumns !== null && createBodyColumns !== null) {
       const columnManager = new ColumnManager(createBodyColumns, createHeadColumns())
-      this._builder = new TableBuilder(() => this.forceUpdate(), columnManager)
+      this._builder = new TableBuilder(() => this.reRender(), columnManager)
     }
     if (comparison !== null) {
       this.getTable().getDataSelectorManager().comparison = comparison
@@ -42,22 +44,16 @@ class TableAbstract extends React.Component {
   }
   componentWillMount() {
     const {
-      tableModel = null,
-      size = null,
-      density = size,
-      maxItems = TABLE_LIMIT_ROWS_BY_DEFAULT
+      table = null
     } = this.props
     if (this._table === null) {
       if (this.getBuilder() !== null) {
         this._table = this.getBuilder().getTableFacade()
       } else {
-        this._table = tableModel
+        this._table = table
+        this._table.getRenderManager().addEvent(() => this.reRender())
       }
     }
-    if (density !== null) {
-      this.getTable().getDensityManager().setDensity(density)
-    }
-    this.getTable().getPaginationManager().setLimitRows(maxItems)
   }
   getCheckbox(entity, index){
     throw new Error('Method "getCheckbox" should be defined')
@@ -81,8 +77,13 @@ class TableAbstract extends React.Component {
    * @return {boolean}
    */
   isLoading () {
-    const entities = this.getData()
-    return entities.length === 0
+    const {
+      loaded
+    } = this.props
+    if (loaded === undefined) {
+      return this.getData().length === 0
+    }
+    return this.getData().length === 0 || loaded === false
   }
   row(entity, checkbox, key){
     const {
@@ -250,57 +251,42 @@ class TableAbstract extends React.Component {
     densityManager.setDensity(density)
     onChangeDensity(densityManager.getDensity())
   }
-  getTop(){
-    return null
-  }
-  getBottom(){
-    return null
-  }
   render(){
     const entities = this.getTable().getEntities(this.getData())
-    if (this.getTable() === null) {
-      return null
-    }
+
     return (
-      <div className='table-page-component'>
-        <div className='table-page-component__Header'>
-          {this.getTop()}
-        </div>
-        <div className='table-page-component__data'>
-          <table className={classnames([
-            'table-component',
-            this.getTheme(),
-            this.getClassName()
-          ])}>
-            {this.getHeader()}
-            <tbody className='table-component__body'>
-            {(this.isLoading() ?
+      <div className='table-page-component__data'>
+        <table className={classnames([
+          'table-component',
+          this.getTheme(),
+          this.getClassName()
+        ])}>
+          {this.getHeader()}
+          <tbody className='table-component__body'>
+          {(this.isLoading() ?
               this.getNoItems() :
               entities.map((entity, index) => this.row(entity, this.getCheckbox(entity, index), index))
-            )}
-            </tbody>
-          </table>
-        </div>
-        <div className='table-page-component__bottom'>
-          {this.getBottom()}
-        </div>
+          )}
+          </tbody>
+        </table>
       </div>
     )
   }
 }
 TableAbstract.propTypes = {
-  entities: PropTypes.array,
   createHeadColumns: PropTypes.func,
   createBodyColumns: PropTypes.func,
-  tableModel: PropTypes.instanceOf(TableFacadeAbstract),
+  table: PropTypes.instanceOf(TableFacadeAbstract),
+  entities: PropTypes.array,
   onChoose: PropTypes.func,
   onSelectEntity: PropTypes.func,
-  onChangeDensity: PropTypes.func,
   onSort: PropTypes.func,
   onDoubleClick: PropTypes.func,
   onClick: PropTypes.func,
   onContextMenu: PropTypes.func,
+  className: PropTypes.string,
+  loaded: PropTypes.bool,
   comparison: PropTypes.func,
-  className: PropTypes.string
+  theme: PropTypes.string
 }
 export default TableAbstract

@@ -2,22 +2,36 @@ import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from "enzyme-adapter-react-16"
 Enzyme.configure({ adapter: new Adapter() });
-import DefaultTableComponent from '../dist/DefaultTableComponent'
+import DefaultTable from '../dist/DefaultTable'
 import ColumnEntityFactory from 'ui-package--table-component/dist/Factories/ColumnEntityFactory'
 import SortComponent from '../dist/SortComponent'
+import TableBuilder from 'ui-package--table-component/dist/Builders/TableBuilder/TableBuilder'
 
-describe('<DefaultTableComponent />', () => {
+describe('<DefaultTable />', () => {
   describe('Header', () => {
     describe('Fields: name, phone', () => {
+      const builder = new TableBuilder()
+      const headColumns = (
+        builder
+          .getFactory()
+          .addHeader('name')
+          .addHeader('phone')
+          .getHeaders()
+      )
+      const bodyColumnsFactory = (entity) => {
+        return (
+          builder.getFactory()
+            .addBody('name', entity.name)
+            .addBody('phone', entity.phone)
+            .getBodies()
+        )
+      }
+      builder.buildColumnManager(headColumns, bodyColumnsFactory)
+      const table = builder.getTableFacade()
+
       const wrapper = shallow(
-        <DefaultTableComponent
-          createBodyColumns={(entity) => {}}
-          createHeadColumns={() => {
-            return new ColumnEntityFactory()
-              .addHeader('name')
-              .addHeader('phone')
-              .getHeaders()
-          }} />
+        <DefaultTable
+          table={table} />
       )
       it('Should not has checkbox', () => {
         expect(wrapper.find('.table-component__head').find('.table-component__column-checkbox').exists()).toBe(false)
@@ -45,7 +59,7 @@ describe('<DefaultTableComponent />', () => {
     })
     describe('Fields: customer, id, emails', () => {
       const wrapper = shallow(
-        <DefaultTableComponent
+        <DefaultTable
           createBodyColumns={(entity) => {}}
           createHeadColumns={() => {
             return new ColumnEntityFactory()
@@ -111,7 +125,7 @@ describe('<DefaultTableComponent />', () => {
         {name: 'Paul', phone: '627363'}
       ]
       const wrapper = shallow(
-        <DefaultTableComponent
+        <DefaultTable
           entities={data}
           onSelectEntity={() => {}}
           createBodyColumns={(entity) => {
@@ -152,26 +166,35 @@ describe('<DefaultTableComponent />', () => {
         {name: 'Max', id: 100006, any: '678', email: 'max@gmail.com'}
       ]
 
+      const builder = new TableBuilder()
+      const headColumns = (
+        builder
+          .getFactory()
+          .addHeader('name')
+          .addHeader('id','#id')
+          .addHeader('any', 'any', true, true)
+          .addHeader('email')
+          .getHeaders()
+      )
+      const bodyColumnsFactory = (entity) => {
+        return (
+          builder.getFactory()
+            .addBody('name', entity.name)
+            .addBody('id', entity.id)
+            .addBody('any', entity.any)
+            .addBody('email', entity.email)
+            .getBodies()
+        )
+      }
+      builder.buildColumnManager(headColumns, bodyColumnsFactory)
+      const table = builder.getTableFacade()
+
+
       const wrapper = shallow(
-        <DefaultTableComponent
+        <DefaultTable
+          table={table}
           entities={data}
-          onSelectEntity={() => {}}
-          createBodyColumns={(entity) => {
-            return new ColumnEntityFactory()
-              .addBody('name', entity.name)
-              .addBody('id', entity.id)
-              .addBody('any', entity.any)
-              .addBody('email', entity.email)
-              .getBodies()
-          }}
-          createHeadColumns={() => {
-            return new ColumnEntityFactory()
-              .addHeader('name')
-              .addHeader('id','#id')
-              .addHeader('any', 'any', true, true)
-              .addHeader('email')
-              .getHeaders()
-          }} />
+          onSelectEntity={() => {}} />
       )
       const rows = wrapper.find('.table-component__body').find('.table-component__body-row')
       it('Should return 6', () => {
@@ -200,21 +223,28 @@ describe('<DefaultTableComponent />', () => {
       'Jone'
     ]
     let entities = []
+
+    const builder = new TableBuilder()
+    const headColumnsFactory = () => (
+      builder
+        .getFactory()
+        .addHeader('name')
+        .getHeaders()
+    )
+    const bodyColumnsFactory = (entity) => (
+      builder.getFactory()
+        .addBody('name', entity)
+        .getBodies()
+    )
+    builder.buildColumnManager(headColumnsFactory, bodyColumnsFactory)
+    const table = builder.getTableFacade()
+
     const wrapper = shallow(
-      <DefaultTableComponent
+      <DefaultTable
+        table={table}
         entities={entitiesInit}
         onSelectEntity={(data) => {
           entities = data
-        }}
-        createBodyColumns={(entity) => {
-          return new ColumnEntityFactory()
-            .addBody('name', entity)
-            .getBodies()
-        }}
-        createHeadColumns={() => {
-          return new ColumnEntityFactory()
-            .addHeader('name')
-            .getHeaders()
         }} />
     )
 
@@ -443,7 +473,7 @@ describe('<DefaultTableComponent />', () => {
 
   describe('Sorting', () => {
     const wrapper = shallow(
-      <DefaultTableComponent
+      <DefaultTable
         entities={[]}
         onSelectEntity={() => {}}
         createBodyColumns={(entity) => {
