@@ -35,12 +35,20 @@ class TableAbstract extends React.Component {
     } = this.props
     if (createHeadColumns !== null && createBodyColumns !== null) {
       const columnManager = new ColumnManager(createBodyColumns, createHeadColumns())
-      this._builder = new TableBuilder(() => this.reRender(), columnManager)
+      this._builder = this.createBuilder(columnManager)
     }
     if (comparison !== null) {
       this.getTable().getDataSelectorManager().comparison = comparison
     }
     return this._builder
+  }
+
+  /**
+   * @param columnManager {ColumnManagerInterface}
+   * @return {TableBuilderAbstract}
+   */
+  createBuilder (columnManager) {
+    return new TableBuilder(() => this.reRender(), columnManager)
   }
   componentWillMount() {
     const {
@@ -239,17 +247,6 @@ class TableAbstract extends React.Component {
    */
   getDensity () {
     return this.getTable().getDensityManager().getDensity()
-  }
-  /**
-   * @param density {Number}
-   */
-  handleChangeDensity (density) {
-    const {
-      onChangeDensity = () => {}
-    } = this.props
-    const densityManager = this.getTable().getDensityManager()
-    densityManager.setDensity(density)
-    onChangeDensity(densityManager.getDensity())
   }
   render(){
     const entities = this.getTable().getEntities(this.getData())

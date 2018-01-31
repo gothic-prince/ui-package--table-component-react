@@ -73,8 +73,6 @@ var TableAbstract = function (_React$Component) {
   }, {
     key: 'getBuilder',
     value: function getBuilder() {
-      var _this2 = this;
-
       var _props = this.props,
           _props$createHeadColu = _props.createHeadColumns,
           createHeadColumns = _props$createHeadColu === undefined ? null : _props$createHeadColu,
@@ -85,14 +83,27 @@ var TableAbstract = function (_React$Component) {
 
       if (createHeadColumns !== null && createBodyColumns !== null) {
         var columnManager = new _ColumnManager2.default(createBodyColumns, createHeadColumns());
-        this._builder = new _TableBuilder2.default(function () {
-          return _this2.reRender();
-        }, columnManager);
+        this._builder = this.createBuilder(columnManager);
       }
       if (comparison !== null) {
         this.getTable().getDataSelectorManager().comparison = comparison;
       }
       return this._builder;
+    }
+
+    /**
+     * @param columnManager {ColumnManagerInterface}
+     * @return {TableBuilderAbstract}
+     */
+
+  }, {
+    key: 'createBuilder',
+    value: function createBuilder(columnManager) {
+      var _this2 = this;
+
+      return new _TableBuilder2.default(function () {
+        return _this2.reRender();
+      }, columnManager);
     }
   }, {
     key: 'componentWillMount',
@@ -354,20 +365,6 @@ var TableAbstract = function (_React$Component) {
     key: 'getDensity',
     value: function getDensity() {
       return this.getTable().getDensityManager().getDensity();
-    }
-    /**
-     * @param density {Number}
-     */
-
-  }, {
-    key: 'handleChangeDensity',
-    value: function handleChangeDensity(density) {
-      var _props$onChangeDensit = this.props.onChangeDensity,
-          onChangeDensity = _props$onChangeDensit === undefined ? function () {} : _props$onChangeDensit;
-
-      var densityManager = this.getTable().getDensityManager();
-      densityManager.setDensity(density);
-      onChangeDensity(densityManager.getDensity());
     }
   }, {
     key: 'render',
