@@ -258,7 +258,7 @@ class TableAbstract extends React.Component {
       ])}>
         {this.getHeader()}
         <tbody className='table-component__body'>
-        {(this.isLoading() ?
+        {(this.isLoading() === true || entities.length === 0 ?
             this.getNoItems() :
             entities.map((entity, index) => this.row(entity, this.getCheckbox(entity, index), index))
         )}

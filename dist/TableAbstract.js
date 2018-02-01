@@ -379,7 +379,7 @@ var TableAbstract = function (_React$Component) {
         _react2.default.createElement(
           'tbody',
           { className: 'table-component__body' },
-          this.isLoading() ? this.getNoItems() : entities.map(function (entity, index) {
+          this.isLoading() === true || entities.length === 0 ? this.getNoItems() : entities.map(function (entity, index) {
             return _this6.row(entity, _this6.getCheckbox(entity, index), index);
           })
         )
