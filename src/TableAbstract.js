@@ -192,6 +192,7 @@ class TableAbstract extends React.Component {
       onSelectEntity = onChoose
     } = this.props
     const selectManager = this.getTable().getDataSelectorManager()
+    const pagination = this.getTable().getPaginationManager()
     let entities = []
     switch (selectManager.get().length) {
       case 0:
@@ -204,7 +205,8 @@ class TableAbstract extends React.Component {
         entities = this.getData()
         break
     }
-    selectManager.set(entities)
+    const paginatedEntities = pagination.getCutEntities(entities)
+    selectManager.set(paginatedEntities)
     onSelectEntity(selectManager.get())
   }
   /**

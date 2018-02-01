@@ -295,6 +295,7 @@ var TableAbstract = function (_React$Component) {
           onSelectEntity = _props3$onSelectEntit === undefined ? onChoose : _props3$onSelectEntit;
 
       var selectManager = this.getTable().getDataSelectorManager();
+      var pagination = this.getTable().getPaginationManager();
       var entities = [];
       switch (selectManager.get().length) {
         case 0:
@@ -307,7 +308,8 @@ var TableAbstract = function (_React$Component) {
           entities = this.getData();
           break;
       }
-      selectManager.set(entities);
+      var paginatedEntities = pagination.getCutEntities(entities);
+      selectManager.set(paginatedEntities);
       onSelectEntity(selectManager.get());
     }
     /**
