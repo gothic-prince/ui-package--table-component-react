@@ -82,6 +82,12 @@ class TableAbstract extends React.Component {
     return this.props.entities || []
   }
   /**
+   * @return {Array}
+   */
+  getPaginatedData () {
+    return this.getTable().getPaginationManager().getCutEntities(this.getData())
+  }
+  /**
    * @return {boolean}
    */
   isLoading () {
@@ -192,21 +198,19 @@ class TableAbstract extends React.Component {
       onSelectEntity = onChoose
     } = this.props
     const selectManager = this.getTable().getDataSelectorManager()
-    const pagination = this.getTable().getPaginationManager()
     let entities = []
     switch (selectManager.get().length) {
       case 0:
-        entities = this.getData()
+        entities = this.getPaginatedData()
         break
-      case this.getData().length:
+      case this.getPaginatedData().length:
         entities = []
         break
       default:
-        entities = this.getData()
+        entities = this.getPaginatedData()
         break
     }
-    const paginatedEntities = pagination.getCutEntities(entities)
-    selectManager.set(paginatedEntities)
+    selectManager.set(entities)
     onSelectEntity(selectManager.get())
   }
   /**

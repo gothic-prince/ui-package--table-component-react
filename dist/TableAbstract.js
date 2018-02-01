@@ -153,6 +153,15 @@ var TableAbstract = function (_React$Component) {
       return this.props.entities || [];
     }
     /**
+     * @return {Array}
+     */
+
+  }, {
+    key: 'getPaginatedData',
+    value: function getPaginatedData() {
+      return this.getTable().getPaginationManager().getCutEntities(this.getData());
+    }
+    /**
      * @return {boolean}
      */
 
@@ -295,21 +304,19 @@ var TableAbstract = function (_React$Component) {
           onSelectEntity = _props3$onSelectEntit === undefined ? onChoose : _props3$onSelectEntit;
 
       var selectManager = this.getTable().getDataSelectorManager();
-      var pagination = this.getTable().getPaginationManager();
       var entities = [];
       switch (selectManager.get().length) {
         case 0:
-          entities = this.getData();
+          entities = this.getPaginatedData();
           break;
-        case this.getData().length:
+        case this.getPaginatedData().length:
           entities = [];
           break;
         default:
-          entities = this.getData();
+          entities = this.getPaginatedData();
           break;
       }
-      var paginatedEntities = pagination.getCutEntities(entities);
-      selectManager.set(paginatedEntities);
+      selectManager.set(entities);
       onSelectEntity(selectManager.get());
     }
     /**
