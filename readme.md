@@ -54,11 +54,11 @@ const table = builder.getTableFacade()
 | entities | Array | [] | You need input your data |
 | createHeadColumns | Function | null | Should return array of [ColumnHeadEntityInterface](https://github.com/ui-package/table-component/blob/master/src/Entities/HeadColumn/ColumnHeadEntityInterface.js) |
 | createBodyColumns | Function`<Object>` | null | Should return array of [ColumnBodyEntityInterface](https://github.com/ui-package/table-component/blob/master/src/Entities/BodyColumn/ColumnBodyEntityInterface.js)  |
-| onSelectEntity | Function`<Object[]>` |  |  |
-| onSort | Function`<String>` | | |
-| onDoubleClick | Function`<Event>` | | |
-| onClick | Function`<Event>` | | |
-| onContextMenu | Function`<Event>` | | |
+| onSelectEntity | Function`<Object[], TableFacadeAbstract>` |  |  |
+| onSort | Function`<String, TableFacadeAbstract>` | | |
+| onDoubleClick | Function`<Event, Object, TableFacadeAbstract>` | | |
+| onClick | Function`<Event, Object, TableFacadeAbstract>` | | |
+| onContextMenu | Function`<Event, Object, TableFacadeAbstract>` | | |
 | comparison | Function`<Object, Object>` | (e, e2) => e === e2 | |
 | className | String | | |
 | loaded | Boolean | | It need you if you use async |

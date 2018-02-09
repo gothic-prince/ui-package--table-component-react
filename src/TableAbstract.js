@@ -130,9 +130,9 @@ class TableAbstract extends React.Component {
         result.push(
           <td
             className='table-component__body-field'
-            onDoubleClick={(e) => onDoubleClick(e, entity)}
-            onContextMenu={(e) => onContextMenu(e, entity)}
-            onClick={(e) => onClick(e, entity)}
+            onDoubleClick={(e) => onDoubleClick(e, entity, this.getTable())}
+            onContextMenu={(e) => onContextMenu(e, entity, this.getTable())}
+            onClick={(e) => onClick(e, entity, this.getTable())}
             key={index+1}>{column.getHtmlValue()}</td>
         )
       }
@@ -161,7 +161,7 @@ class TableAbstract extends React.Component {
       return
     }
     this.getTable().getSortManager().by(field)
-    onSort(field)
+    onSort(field, this.getTable())
   }
   /**
    * @param header {ColumnHeadEntityInterface}
@@ -223,7 +223,7 @@ class TableAbstract extends React.Component {
     } = this.props
     const selectManager = this.getTable().getDataSelectorManager()
     selectManager.add(entity)
-    onSelectEntity(selectManager.get())
+    onSelectEntity(selectManager.get(), this.getTable())
   }
   getHeader () {
     const {

@@ -178,6 +178,8 @@ var TableAbstract = function (_React$Component) {
   }, {
     key: 'row',
     value: function row(entity, checkbox, key) {
+      var _this4 = this;
+
       var _props2 = this.props,
           _props2$onChoose = _props2.onChoose,
           onChoose = _props2$onChoose === undefined ? null : _props2$onChoose,
@@ -217,13 +219,13 @@ var TableAbstract = function (_React$Component) {
             {
               className: 'table-component__body-field',
               onDoubleClick: function onDoubleClick(e) {
-                return _onDoubleClick(e, entity);
+                return _onDoubleClick(e, entity, _this4.getTable());
               },
               onContextMenu: function onContextMenu(e) {
-                return _onContextMenu(e, entity);
+                return _onContextMenu(e, entity, _this4.getTable());
               },
               onClick: function onClick(e) {
-                return _onClick(e, entity);
+                return _onClick(e, entity, _this4.getTable());
               },
               key: index + 1 },
             column.getHtmlValue()
@@ -261,7 +263,7 @@ var TableAbstract = function (_React$Component) {
         return;
       }
       this.getTable().getSortManager().by(field);
-      onSort(field);
+      onSort(field, this.getTable());
     }
     /**
      * @param header {ColumnHeadEntityInterface}
@@ -271,7 +273,7 @@ var TableAbstract = function (_React$Component) {
   }, {
     key: 'renderHeaderField',
     value: function renderHeaderField(header, key) {
-      var _this4 = this;
+      var _this5 = this;
 
       if (header.isHidden() === true) {
         return null;
@@ -281,7 +283,7 @@ var TableAbstract = function (_React$Component) {
         {
           className: 'table-component__header-field',
           onClick: function onClick() {
-            return _this4.handleSortingBy(header);
+            return _this5.handleSortingBy(header);
           },
           key: key },
         _react2.default.createElement(
@@ -334,12 +336,12 @@ var TableAbstract = function (_React$Component) {
 
       var selectManager = this.getTable().getDataSelectorManager();
       selectManager.add(entity);
-      onSelectEntity(selectManager.get());
+      onSelectEntity(selectManager.get(), this.getTable());
     }
   }, {
     key: 'getHeader',
     value: function getHeader() {
-      var _this5 = this;
+      var _this6 = this;
 
       var _props5 = this.props,
           _props5$onChoose = _props5.onChoose,
@@ -360,7 +362,7 @@ var TableAbstract = function (_React$Component) {
             this.getCheckbox(null)
           ),
           columnManager.getHeadColumns().map(function (column, key) {
-            return _this5.renderHeaderField(column, key);
+            return _this6.renderHeaderField(column, key);
           })
         )
       );
@@ -378,7 +380,7 @@ var TableAbstract = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this6 = this;
+      var _this7 = this;
 
       var entities = this.getTable().getEntities(this.getData());
       return _react2.default.createElement(
@@ -389,7 +391,7 @@ var TableAbstract = function (_React$Component) {
           'tbody',
           { className: 'table-component__body' },
           this.isLoading() === true || entities.length === 0 ? this.getNoItems() : entities.map(function (entity, index) {
-            return _this6.row(entity, _this6.getCheckbox(entity, index), index);
+            return _this7.row(entity, _this7.getCheckbox(entity, index), index);
           })
         )
       );
